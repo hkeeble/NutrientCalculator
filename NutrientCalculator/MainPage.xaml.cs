@@ -12,14 +12,12 @@ using NutrientCalculator.Resources;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
+using FatSecretAPI;
+
 namespace Assignment
 {
-    delegate void StringDownloadEventHandler(object sender, DownloadStringCompletedEventArgs args);
-    delegate void StringDownloadProgessEventHandler(object sender, DownloadProgressChangedEventArgs args);
-
     public partial class MainPage : PhoneApplicationPage
     {
-
         FatSecretService fatSecret;
 
         // Constructor
@@ -38,39 +36,22 @@ namespace Assignment
             SystemTray.ProgressIndicator = new ProgressIndicator();
         }
 
-        private void GetItemButton_Click(object sender, RoutedEventArgs e)
-        {
-            //fatSecret.SearchFood("Cheese", 20, 0, new StringDownloadEventHandler(GetFoodEventHandler),
-            //new StringDownloadProgessEventHandler(GetFoodProgressEventHandler));
-
-
-            fatSecret.GetFood(33691, new StringDownloadEventHandler(GetFoodEventHandler),
-                               new StringDownloadProgessEventHandler(GetFoodProgressEventHandler));
-            SetProgressIndicator(true);
-            SystemTray.ProgressIndicator.Text = "Downloading";
-        }
-
-        private void GetFoodEventHandler(object sender, DownloadStringCompletedEventArgs args)
-        {
-            SetProgressIndicator(false);
-            //JObject r = JObject.Parse(args.Result);
-            //JToken food = r["foods"];
-            //string s = r.ToString();
-
-            //FoodSearchResults results = JsonConvert.DeserializeObject<FoodSearchResults>(food.ToString());
-
-            Food food = fatSecret.DeserializeFood(args.Result);
-        }
-
-        private void GetFoodProgressEventHandler(object sender, DownloadProgressChangedEventArgs args)
-        {
-
-        }
-
         private void SetProgressIndicator(bool isVisible)
         {
             SystemTray.ProgressIndicator.IsIndeterminate = isVisible;
             SystemTray.ProgressIndicator.IsVisible = isVisible;
+        }
+
+        private void newProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Source/Pages/NewProfile.xaml", UriKind.Relative));
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            NavigationData data = NavigationData.ParseURI(e.Uri.ToString());
         }
 
         // Sample code for building a localized ApplicationBar

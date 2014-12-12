@@ -109,15 +109,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Source\FatSecretService.cs" />
-    <Compile Include="Source\FatSecret\FatSecretObjects.cs" />
+    <Compile Include="Source\FatSecret\FatSecretService.cs" />
     <Compile Include="Source\FatSecret\Food.cs" />
     <Compile Include="Source\FatSecret\FoodSearch.cs" />
     <Compile Include="Source\FatSecret\Recipe.cs" />
     <Compile Include="Source\FatSecret\RecipeSearch.cs" />
     <Compile Include="Source\FatSecret\SearchResult.cs" />
-    <Compile Include="Source\JsonConverters.cs" />
+    <Compile Include="Source\FatSecret\JsonConverters.cs" />
+    <Compile Include="Source\NavigationData.cs" />
+    <Compile Include="Source\Pages\NewProfile.xaml.cs">
+      <DependentUpon>NewProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Source\RESTUtils.cs" />
+    <Compile Include="Source\UserProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -125,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Pages\NewProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,6 +164,9 @@
     <None Include="Service References\SADService\Service13.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Images\defaultProfile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
@@ -213,9 +224,7 @@
       <HintPath>..\packages\OAuth.1.0.3\lib\sl4-wp\OAuth.WindowsPhone.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Source\Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

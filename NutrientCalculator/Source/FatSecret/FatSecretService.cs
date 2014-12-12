@@ -10,11 +10,23 @@ using OAuth;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Assignment
+using Assignment;
+
+namespace FatSecretAPI
 {
+    delegate void StringDownloadEventHandler(object sender, DownloadStringCompletedEventArgs args);
+    delegate void StringDownloadProgessEventHandler(object sender, DownloadProgressChangedEventArgs args);
+
+
     class FatSecretService
     {
-        public FatSecretService() { }
+        private JsonSerializerSettings serializerSettings;
+
+        public FatSecretService()
+        {
+            serializerSettings = new JsonSerializerSettings();
+            serializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
+        }
 
         /// <summary>
         /// Retrieves food from the server with the given ID.
@@ -22,11 +34,11 @@ namespace Assignment
         /// <param name="ID">ID of the food to retrieve.</param>
         /// <param name="handler">Handler event to handle the completion of this request.</param>
         /// <param name="progressHandler">Optional handler for progress on this request.</param>
-        public void GetFood(int ID, StringDownloadEventHandler handler, StringDownloadProgessEventHandler progressHandler = null)
+        public void GetFood(string ID, StringDownloadEventHandler handler, StringDownloadProgessEventHandler progressHandler = null)
         {
             RequestParams paramList = CreateBaseRequest(Method.FOOD_GET, Format.JSON);
 
-            paramList.AddParam("food_id", ID.ToString()); // Add the search parameter
+            paramList.AddParam("food_id", ID); // Add the search parameter
 
             // Calculate a signature
             paramList.AddSignature(OAuthSignatureMethod.HmacSha1, HTTPMethod.GET, REQUEST_URL, API_SECRET);
@@ -53,14 +65,24 @@ namespace Assignment
             SendRequest(CreateRequestURI(paramList), handler, progressHandler);
         }
 
-        public void GetRecipe(int ID)
+        public void GetRecipe(string ID, StringDownloadEventHandler handler, StringDownloadProgessEventHandler progressHandler = null)
         {
+            RequestParams paramList = CreateBaseRequest(Method.RECIPE_GET, Format.JSON);
+            paramList.AddParam("recipe_id", ID);
+            paramList.AddSignature(OAuthSignatureMethod.HmacSha1, HTTPMethod.GET, REQUEST_URL, API_SECRET);
 
+            SendRequest(CreateRequestURI(paramList), handler, progressHandler);
         }
 
-        public void SearchRecipes(string searchTerms)
+        public void SearchRecipes(string searchTerms, int maxResults, int pageNumber, StringDownloadEventHandler handler, StringDownloadProgessEventHandler progressHandler = null)
         {
+            RequestParams paramList = CreateBaseRequest(Method.RECIPES_SEARCH, Format.JSON);
+            paramList.AddParam("search_expression", searchTerms);
+            paramList.AddParam("max_results", Convert.ToString(maxResults));
+            paramList.AddParam("page_number", Convert.ToString(pageNumber));
+            paramList.AddSignature(OAuthSignatureMethod.HmacSha1, HTTPMethod.GET, REQUEST_URL, API_SECRET);
 
+            SendRequest(CreateRequestURI(paramList), handler, progressHandler);
         }
 
         public Uri CreateRequestURI(RequestParams param)
@@ -89,7 +111,28 @@ namespace Assignment
         {
             JToken root = JObject.Parse(data);
             JToken food = root["food"];
-            return JsonConvert.DeserializeObject<Food>(food.ToString());
+            return JsonConvert.DeserializeObject<Food>(food.ToString(), serializerSettings);
+        }
+
+        public Recipe DeserializeRecipe(string data)
+        {
+            JToken root = JObject.Parse(data);
+            JToken recipe = root["recipe"];
+            return JsonConvert.DeserializeObject<Recipe>(recipe.ToString(), serializerSettings);
+        }
+
+        public FoodSearchResults DeserializeFoodSearch(string data)
+        {
+            JToken root = JObject.Parse(data);
+            JToken foods = root["foods"];
+            return JsonConvert.DeserializeObject<FoodSearchResults>(foods.ToString(), serializerSettings);
+        }
+
+        public RecipeSearchResults DeserializeRecipeSearch(string data)
+        {
+            JToken root = JObject.Parse(data);
+            JToken recipes = root["recipes"];
+            return JsonConvert.DeserializeObject<RecipeSearchResults>(recipes.ToString(), serializerSettings);
         }
 
         // API constants

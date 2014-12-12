@@ -3,6 +3,7 @@
   <XAPFiles>
     <File>resources.pri</File>
     <File>NutrientCalculator.dll</File>
+    <File>Images\defaultProfile.png</File>
     <File>ServiceReferences.ClientConfig</File>
     <File>Assets\AlignmentGrid.png</File>
     <File>Assets\BadgeLogo.png</File>

@@ -31,8 +31,8 @@
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\packages\OAuth.1.0.3\lib\sl4-wp\OAuth.WindowsPhone.xml">
       <PackagePath>OAuth.WindowsPhone.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\ServiceReferences.ClientConfig">
-      <PackagePath>ServiceReferences.ClientConfig</PackagePath>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\defaultProfile.png">
+      <PackagePath>Images\defaultProfile.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Assets\AlignmentGrid.png">
       <PackagePath>Assets\AlignmentGrid.png</PackagePath>
@@ -80,6 +80,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Assets\Tiles\IconicTileSmall.png">
       <PackagePath>Assets\Tiles\IconicTileSmall.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\ServiceReferences.ClientConfig">
+      <PackagePath>ServiceReferences.ClientConfig</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>

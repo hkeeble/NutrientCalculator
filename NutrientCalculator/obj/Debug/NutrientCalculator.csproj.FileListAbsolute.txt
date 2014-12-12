@@ -39,3 +39,5 @@ C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculat
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\OAuth.WindowsPhone.pdb
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\OAuth.WindowsPhone.xml
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\MainPage.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\NewProfile.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\Images\defaultProfile.png

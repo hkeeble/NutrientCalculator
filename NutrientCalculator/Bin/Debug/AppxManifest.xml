@@ -44,6 +44,9 @@
       </InProcessServer>
     </Extension>
   </Extensions>
+  <Capabilities>
+    <Capability Name="picturesLibrary" />
+  </Capabilities>
   <build:Metadata>
     <build:Item Name="TargetFrameworkMoniker" Value="WindowsPhone,Version=v8.1" />
     <build:Item Name="VisualStudio" Version="12.0" />
