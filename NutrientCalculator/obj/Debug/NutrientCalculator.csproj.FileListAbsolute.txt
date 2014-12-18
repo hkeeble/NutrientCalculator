@@ -32,7 +32,6 @@ C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculat
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\ProjectArchitectures.txt
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\MDILProjectFiles.xml
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\XapCacheFile.xml
-C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\NutrientCalculator.csprojResolveAssemblyReference.cache
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\Newtonsoft.Json.dll
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\OAuth.WindowsPhone.dll
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\Newtonsoft.Json.xml
@@ -41,3 +40,19 @@ C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculat
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\MainPage.g.cs
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\NewProfile.g.cs
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\Images\defaultProfile.png
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\NutrientCalculator.csprojResolveAssemblyReference.cache
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\WriteableBitmapExWinPhone.dll
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\WriteableBitmapExWinPhoneXnaDependant.dll
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\WriteableBitmapExWinPhone.pdb
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\WriteableBitmapExWinPhone.xml
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\WriteableBitmapExWinPhoneXnaDependant.pdb
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\WriteableBitmapExWinPhoneXnaDependant.xml
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\Main.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\Microsoft.Phone.Controls.dll
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\DietModifier.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\RecipeBuilder.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\RecipeInfo.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\RecipeSearch.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\WeeklySummary.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\FoodSearch.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\ServingViewer.g.cs

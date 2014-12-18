@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.IO.IsolatedStorage;
+using System.Windows.Media.Imaging;
+using System.Net;
+using System.Windows;
+using System.Windows.Controls;
+
+using Newtonsoft.Json;
 
 namespace Assignment
 {
-    enum Gender
+    public enum Gender
     {
         MALE,
         FEMALE
@@ -41,17 +49,21 @@ namespace Assignment
         }
     }
 
-    struct Range
+    public struct Range
     {
-        private double min, max;
+        private double min;
+        private double max;
 
-        double Minimum { get { return min; } }
-        double Maximum { get { return max; } }
+        [JsonIgnore]
+        public double Minimum { get { return min; } }
+
+        [JsonIgnore]
+        public double Maximum { get { return max; } }
 
         public Range(double minimum, double maximum)
         {
-            this.min = minimum;
-            this.max = maximum;
+            min = minimum;
+            max = maximum;
         }
 
         public Range(double median, double toleranceUp, double toleranceDown)
@@ -66,16 +78,16 @@ namespace Assignment
     /// <summary>
     /// Represents a collection of dietary requirements.
     /// </summary>
-    class DietSpecification
+    public class DietSpecification
     {
-        public Range Calories       { get; set; }
-        public Range Protein        { get; set; }
-        public Range Carbohydrate   { get; set; }
-        public Range Sugars         { get; set; }
-        public Range Fat            { get; set; }
-        public Range Saturates      { get; set; }
-        public Range Fibre          { get; set; }
-        public Range Salt           { get; set; }
+        public Range Calories;
+        public Range Protein;
+        public Range Carbohydrate;
+        public Range Sugars;
+        public Range Fat;
+        public Range Saturates;
+        public Range Fibre;
+        public Range Salt;
 
         public DietSpecification()
         {
@@ -112,23 +124,126 @@ namespace Assignment
     /// <summary>
     /// Represents a user profile.
     /// </summary>
-    class UserProfile
+    public class UserProfile
     {
+        // Serializable/Deserializable values
         public string Name { get; set; }
-        public string Image { get; set; }
+        public string ImageLocation { get; set; }
         public DietSpecification DietSpecifications { get; set; }
         public Gender Gender { get; set; }
+        public double ImageRotation { get; set; }
+
+        [JsonIgnore]
+        private BitmapImage image;
+
+        [JsonIgnore]
+        public BitmapImage Image { get { return image; } }
+        
+        public UserProfile()
+        {
+
+        }
 
         /// <summary>
         /// Creates a new user profile, and initializes dietary specifications with GDA for the given gender.
         /// </summary>
         /// <param name="name">Name of the profile.</param>
         /// <param name="gender">Gender of the profile.</param>
-        public UserProfile(string name, Gender gender)
+        private UserProfile(string name, Gender gender, string imageURI)
         {
             Name = name;
             Gender = gender;
+            ImageLocation = imageURI;
             DietSpecifications = DietSpecification.createGDA(gender, 5f);
+        }
+
+        /// <summary>
+        /// Create a new profile from data received from new profile page.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="gender"></param>
+        /// <param name="tempImageLocation"></param>
+        /// <returns></returns>
+        public static UserProfile Create(string name, Gender gender, string tempImageLocation)
+        {
+            // Create folder structure
+            using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                string fileName = name + ".json";
+
+                if (!storage.DirectoryExists(@"profiles\" + name))
+                    storage.CreateDirectory(@"profiles\" + name);
+
+                // Handle profile picture...
+
+                // Retrieve temporary image
+                BitmapImage image = new BitmapImage();
+                using(IsolatedStorageFileStream stream = storage.OpenFile(tempImageLocation, FileMode.Open, FileAccess.Read))
+                {
+                    image.SetSource(stream);
+                    stream.Close();
+                }
+
+                // Save to a permanent location
+                using(IsolatedStorageFileStream stream = storage.CreateFile(@"profiles\" + name + @"\" + name + "_picture.jpg"))
+                {
+                    WriteableBitmap writable = new WriteableBitmap(image);
+                    writable.SaveJpeg(stream, writable.PixelWidth, writable.PixelHeight, 0, 90);
+                    stream.Close();
+                }
+
+
+                string[] f = storage.GetFileNames(@"profiles\" + name + @"\*");
+                int i = 0;
+            }
+
+
+            UserProfile profile = new UserProfile(name, gender, @"profiles\" + name + @"\" + name + "_picture.jpg");
+            profile.Save();
+            profile.LoadImage();
+            return profile;
+        }
+
+        public void Save()
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings() { ContractResolver = new PrivateMembersContractResolver() };
+            string output = JsonConvert.SerializeObject(this, settings);
+
+            // Save out data
+            using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                string fileName = Name + ".json";
+
+                try
+                {
+                    StreamWriter writer = new StreamWriter(new IsolatedStorageFileStream(@"profiles\" + Name + @"\" + fileName, FileMode.CreateNew, storage));
+                    writer.Write(output);
+                    writer.Close();
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show("Error saving profile data: " + e.Message, "I/O Error", MessageBoxButton.OK);
+                }
+            }
+        }
+
+        public void LoadImage()
+        {
+            using(IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                try
+                {
+                    using(IsolatedStorageFileStream stream = storage.OpenFile(ImageLocation, FileMode.Open, FileAccess.Read))
+                    {
+                        image = new BitmapImage();
+                        image.SetSource(stream);
+                    }
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show("Error, failed to load profile image for profile " + Name + ":" + e.Message, "I/O Error", MessageBoxButton.OK);
+                }
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Resources;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Navigation;
+using System.IO.IsolatedStorage;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using NutrientCalculator.Resources;
@@ -67,6 +68,14 @@ namespace NutrientCalculator
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            // Initialize local folder structure for app
+            using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                if (!storage.DirectoryExists("profiles"))
+                    storage.CreateDirectory("profiles");
+                if (!storage.DirectoryExists("temp"))
+                    storage.CreateDirectory("temp");
+            }
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -85,6 +94,12 @@ namespace NutrientCalculator
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            // Remove temporary data
+            using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                if (storage.DirectoryExists("temp"))
+                    storage.DeleteDirectory("temp");
+            }
         }
 
         // Code to execute if a navigation fails

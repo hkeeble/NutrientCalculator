@@ -19,11 +19,20 @@
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\NutrientCalculator.dll">
       <PackagePath>NutrientCalculator.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Phone\v8.1\Libraries\Microsoft.Phone.Controls.dll">
+      <PackagePath>Microsoft.Phone.Controls.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\packages\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\packages\OAuth.1.0.3\lib\sl4-wp\OAuth.WindowsPhone.dll">
       <PackagePath>OAuth.WindowsPhone.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\packages\WriteableBitmapEx.1.0.14.0\lib\WindowsPhone8\WriteableBitmapExWinPhone.dll">
+      <PackagePath>WriteableBitmapExWinPhone.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\packages\WriteableBitmapEx.1.0.14.0\lib\WindowsPhone8\WriteableBitmapExWinPhoneXnaDependant.dll">
+      <PackagePath>WriteableBitmapExWinPhoneXnaDependant.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\packages\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.xml">
       <PackagePath>Newtonsoft.Json.xml</PackagePath>
@@ -31,8 +40,26 @@
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\packages\OAuth.1.0.3\lib\sl4-wp\OAuth.WindowsPhone.xml">
       <PackagePath>OAuth.WindowsPhone.xml</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\packages\WriteableBitmapEx.1.0.14.0\lib\WindowsPhone8\WriteableBitmapExWinPhone.xml">
+      <PackagePath>WriteableBitmapExWinPhone.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\packages\WriteableBitmapEx.1.0.14.0\lib\WindowsPhone8\WriteableBitmapExWinPhoneXnaDependant.xml">
+      <PackagePath>WriteableBitmapExWinPhoneXnaDependant.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\buildRecipeTile.png">
+      <PackagePath>Images\buildRecipeTile.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\defaultProfile.png">
       <PackagePath>Images\defaultProfile.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\modifyDietTile.png">
+      <PackagePath>Images\modifyDietTile.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\searchRecipesTile.png">
+      <PackagePath>Images\searchRecipesTile.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\weeklySummaryTile.png">
+      <PackagePath>Images\weeklySummaryTile.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Assets\AlignmentGrid.png">
       <PackagePath>Assets\AlignmentGrid.png</PackagePath>

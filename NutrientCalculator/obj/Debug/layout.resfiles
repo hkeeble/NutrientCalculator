@@ -12,5 +12,9 @@ Assets\Tiles\FlipCycleTileSmall.png
 Assets\Tiles\IconicTileMediumLarge.png
 Assets\Tiles\IconicTileSmall.png
 Assets\WideLogo.png
+Images\buildRecipeTile.png
 Images\defaultProfile.png
+Images\modifyDietTile.png
+Images\searchRecipesTile.png
+Images\weeklySummaryTile.png
 ServiceReferences.ClientConfig

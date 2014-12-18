@@ -36,6 +36,6 @@ namespace FatSecretAPI
     class FoodSearchResults : SearchResult
     {
         [JsonProperty("food"), JsonConverter(typeof(ListConverter<List<FoodSearchResult>>))]
-        List<FoodSearchResult> Results;
+        public List<FoodSearchResult> Results;
     }
 }

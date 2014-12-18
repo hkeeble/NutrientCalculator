@@ -109,6 +109,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Source\FatSecret\Error.cs" />
     <Compile Include="Source\FatSecret\FatSecretService.cs" />
     <Compile Include="Source\FatSecret\Food.cs" />
     <Compile Include="Source\FatSecret\FoodSearch.cs" />
@@ -117,11 +118,37 @@
     <Compile Include="Source\FatSecret\SearchResult.cs" />
     <Compile Include="Source\FatSecret\JsonConverters.cs" />
     <Compile Include="Source\NavigationData.cs" />
+    <Compile Include="Source\Pages\DietModifier.xaml.cs">
+      <DependentUpon>DietModifier.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Pages\FoodSearch.xaml.cs">
+      <DependentUpon>FoodSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Pages\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Source\Pages\NewProfile.xaml.cs">
       <DependentUpon>NewProfile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Source\Pages\RecipeBuilder.xaml.cs">
+      <DependentUpon>RecipeBuilder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Pages\RecipeInfo.xaml.cs">
+      <DependentUpon>RecipeInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Pages\RecipeSearch.xaml.cs">
+      <DependentUpon>RecipeSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Pages\ServingViewer.xaml.cs">
+      <DependentUpon>ServingViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Pages\WeeklySummary.xaml.cs">
+      <DependentUpon>WeeklySummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\PrivateMembersContractResolver.cs" />
     <Compile Include="Source\RESTUtils.cs" />
     <Compile Include="Source\UserProfile.cs" />
+    <Compile Include="Source\UserProfileList.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -132,7 +159,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Source\Pages\DietModifier.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Pages\FoodSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Pages\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Source\Pages\NewProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Pages\RecipeBuilder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Pages\RecipeInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Pages\RecipeSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Pages\ServingViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Pages\WeeklySummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,9 +223,13 @@
     <None Include="Service References\SADService\Service13.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Images\buildRecipeTile.png" />
     <Content Include="Images\defaultProfile.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\modifyDietTile.png" />
+    <Content Include="Images\searchRecipesTile.png" />
+    <Content Include="Images\weeklySummaryTile.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
@@ -217,11 +280,18 @@
     <WCFMetadataStorage Include="Service References\SADService\" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="OAuth.WindowsPhone">
       <HintPath>..\packages\OAuth.1.0.3\lib\sl4-wp\OAuth.WindowsPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="WriteableBitmapExWinPhone">
+      <HintPath>..\packages\WriteableBitmapEx.1.0.14.0\lib\WindowsPhone8\WriteableBitmapExWinPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="WriteableBitmapExWinPhoneXnaDependant">
+      <HintPath>..\packages\WriteableBitmapEx.1.0.14.0\lib\WindowsPhone8\WriteableBitmapExWinPhoneXnaDependant.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup />

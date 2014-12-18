@@ -5,6 +5,7 @@ using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using System.IO.IsolatedStorage;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using NutrientCalculator.Resources;
@@ -14,11 +15,17 @@ using Newtonsoft.Json;
 
 using FatSecretAPI;
 
+using NutrientCalculator.Source.Pages;
+
 namespace Assignment
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        public static string PageID = "mainPage";
+
         FatSecretService fatSecret;
+        UserProfile selectedProfile;
+        UserProfileList userProfileList;
 
         // Constructor
         public MainPage()
@@ -26,10 +33,13 @@ namespace Assignment
             InitializeComponent();
 
             fatSecret = new FatSecretService();
+            userProfileList = new UserProfileList();
+            UpdateProfileList();
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
+
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
@@ -51,7 +61,51 @@ namespace Assignment
         {
             base.OnNavigatedTo(e);
 
+            // Check for navigation
             NavigationData data = NavigationData.ParseURI(e.Uri.ToString());
+            if(data.GetPageID() == NewProfile.PageID && data.Accepted()) // Navigation came from new profile page, we are creating a new profile
+            {
+                Gender gender;
+                string genderVal = data.Get(NavigationData.PROFILE_GENDER);
+                if(genderVal == Gender.MALE.ToString())
+                    gender = Gender.MALE;
+                else
+                    gender = Gender.FEMALE;
+
+                UserProfile profile = UserProfile.Create(data.Get(NavigationData.PROFILE_NAME), gender, data.Get(NavigationData.PROFILE_IMAGE));
+                UpdateProfileList();
+            }
+        }
+
+        private void UpdateProfileList()
+        {
+            userProfileList.ReadProfiles();
+
+            // Fill in the list
+            profileList.ItemsSource = userProfileList.Profiles;
+        }
+
+        private void profileList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+
+        }
+
+        private void profileList_selectionChaged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedProfile = (sender as ListBox).SelectedItem as UserProfile;
+
+            if(selectedProfile != null)
+            {
+                NavigationData data = new NavigationData(PageID, NavigationData.ACCEPT);
+                NavigationService.Navigate(new Uri("/Source/Pages/Main.xaml?" + data.Build(), UriKind.Relative));
+            }
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            Page destination = e.Content as Page;
+            if(destination is Main)
+                (destination as Main).currentUserProfile = selectedProfile;
         }
 
         // Sample code for building a localized ApplicationBar

@@ -17,7 +17,6 @@ namespace FatSecretAPI
     delegate void StringDownloadEventHandler(object sender, DownloadStringCompletedEventArgs args);
     delegate void StringDownloadProgessEventHandler(object sender, DownloadProgressChangedEventArgs args);
 
-
     class FatSecretService
     {
         private JsonSerializerSettings serializerSettings;
@@ -124,15 +123,35 @@ namespace FatSecretAPI
         public FoodSearchResults DeserializeFoodSearch(string data)
         {
             JToken root = JObject.Parse(data);
-            JToken foods = root["foods"];
-            return JsonConvert.DeserializeObject<FoodSearchResults>(foods.ToString(), serializerSettings);
+            if (root["error"] == null)
+            {
+                JToken foods = root["foods"];
+                return JsonConvert.DeserializeObject<FoodSearchResults>(foods.ToString(), serializerSettings);
+            }
+            else
+            {
+                Error err = JsonConvert.DeserializeObject<Error>(root["error"].ToString(), serializerSettings);
+                MessageBox.Show("Error getting food: " + err.Message, "Error", MessageBoxButton.OK);
+                return null;
+            }
         }
 
         public RecipeSearchResults DeserializeRecipeSearch(string data)
         {
-            JToken root = JObject.Parse(data);
-            JToken recipes = root["recipes"];
-            return JsonConvert.DeserializeObject<RecipeSearchResults>(recipes.ToString(), serializerSettings);
+            
+                JToken root = JObject.Parse(data);
+
+                if (root["error"] == null)
+                {
+                    JToken recipes = root["recipes"];
+                    return JsonConvert.DeserializeObject<RecipeSearchResults>(recipes.ToString(), serializerSettings);
+                }
+                else
+                {
+                    Error err = JsonConvert.DeserializeObject<Error>(root["error"].ToString(), serializerSettings);
+                    MessageBox.Show("Error getting recipes: " + err.Message, "Error", MessageBoxButton.OK);
+                    return null;
+                }
         }
 
         // API constants
