@@ -28,16 +28,61 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="buildRecipeTile" Stretch="None" Source="/Images/buildRecipeTile.png" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="200" Margin="8,9,0,0" Tap="buildRecipeTile_Tap"/>
-                    <Image x:Name="searchRecipesTile" Stretch="None" Source="/Images/searchRecipesTile.png" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="200" Margin="7,10,0,0" Grid.Column="1" Tap="searchRecipesTile_Tap" />
-                    <Image x:Name="modifyDietTile" Stretch="None" Source="/Images/modifyDietTile.png" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="200" Margin="7,19,0,0" Grid.Column="1" Grid.Row="1" Tap="modifyDietTile_Tap" />
-                    <Image x:Name="weeklySummaryTile" Stretch="None" Source="/Images/weeklySummaryTile.png" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="200" Margin="6,20,0,0" Grid.Row="1" Tap="weeklySummaryTile_Tap" />
+                    <Image Grid.Row="0" Grid.Column="0" x:Name="buildRecipeTile" Stretch="None" Source="/Images/buildRecipeTile.png" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="200" Margin="0,0,0,0" Tap="buildRecipeTile_Tap"/>
+                    <Image Grid.Row="1" Grid.Column="1" x:Name="browseRecipesTile" Stretch="None" Source="/Images/browseMyRecipesTile.png" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="200" Margin="0,0,0,0" Tap="browseRecipes_Tap" />
+                    <Image Grid.Row="0" Grid.Column="1" x:Name="addAMealToTodayTile" Stretch="None" Source="/Images/addAMealToTodayTile.png" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="200" Margin="0,0,0,0" Tap="addAMeal_Tap" />
+                    <Image Grid.Row="1" Grid.Column="0" x:Name="weeklySummaryTile" Stretch="None" Source="/Images/weeklySummaryTile.png" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="200" Margin="0,0,0,0" Tap="weeklySummaryTile_Tap" />
                 </Grid>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem Header="Search">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0" Grid.Column="0" x:Name="searchNutrientRecipesTile" Stretch="None" Source="/Images/searchNutrientCalculatorRecipesTile.png" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="200" Margin="0,0,0,0" Tap="nutrientCalculatorRecipeSearch_Tap"/>
+                    <Image Grid.Row="0" Grid.Column="1" x:Name="searchFatSecretRecipesTile" Stretch="None" Source="/Images/searchFatSecretRecipesTile.png" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="200" Margin="0,0,0,0" Tap="fatSecretRecipeSearch_Tap" />
+                 </Grid>
             </phone:PanoramaItem>
 
             <!--Panorama item two-->
             <phone:PanoramaItem Header="Daily Summary">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Height="475" Margin="0,0,0,0" VerticalAlignment="Top" Width="419">
+                        <!-- <ScrollBar Orientation="Vertical" /> -->
+                        <StackPanel>
+                            <TextBlock Text="Total Consumption:" FontSize="24" FontWeight="Bold" />
+                            <TextBlock x:Name="CaloriesTotal" Text="Calories:" />
+                            <TextBlock x:Name="ProteinTotal" Text="Protein:" />
+                            <TextBlock x:Name="SugarsTotal" Text="Sugars:" />
+                            <TextBlock x:Name="FatTotal" Text="Fat:" />
+                            <TextBlock x:Name="SaturatesTotal" Text="Saturates:" />
+                            <TextBlock x:Name="FiberTotal" Text="Fiber:" />
+                            <TextBlock x:Name="SaltTotal" Text="Salt:" />
 
+                            <TextBlock Text="GDA Comparison:" FontSize="24" FontWeight="Bold" Margin="0,20,0,0"/>
+                            <StackPanel x:Name="comparisonPanel">
+                                <!-- This will be added to at runtime -->
+                            </StackPanel>
+
+                            <TextBlock Text="Meals Consumed: " FontSize="24" FontWeight="Bold" Margin="0,20,0,0"/>
+                            <StackPanel x:Name="mealPanel">
+                                <!-- This will be added to at runtime -->
+                            </StackPanel>
+
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
             </phone:PanoramaItem>
         </phone:Panorama>
     </Grid>

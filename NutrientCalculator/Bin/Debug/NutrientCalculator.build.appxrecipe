@@ -46,17 +46,26 @@
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\packages\WriteableBitmapEx.1.0.14.0\lib\WindowsPhone8\WriteableBitmapExWinPhoneXnaDependant.xml">
       <PackagePath>WriteableBitmapExWinPhoneXnaDependant.xml</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\addAMealToTodayTile.png">
+      <PackagePath>Images\addAMealToTodayTile.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\browseMyRecipesTile.png">
+      <PackagePath>Images\browseMyRecipesTile.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\buildRecipeTile.png">
       <PackagePath>Images\buildRecipeTile.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\defaultProfile.png">
       <PackagePath>Images\defaultProfile.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\modifyDietTile.png">
-      <PackagePath>Images\modifyDietTile.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\defaultRecipe.png">
+      <PackagePath>Images\defaultRecipe.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\searchRecipesTile.png">
-      <PackagePath>Images\searchRecipesTile.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\searchFatSecretRecipesTile.png">
+      <PackagePath>Images\searchFatSecretRecipesTile.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\searchNutrientCalculatorRecipesTile.png">
+      <PackagePath>Images\searchNutrientCalculatorRecipesTile.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\weeklySummaryTile.png">
       <PackagePath>Images\weeklySummaryTile.png</PackagePath>

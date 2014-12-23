@@ -8,7 +8,7 @@ namespace FatSecretAPI
     /// Represents a search result.
     /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
-    abstract class SearchResult
+    public abstract class SearchResult
     {
         [JsonProperty("max_results")]
         public int MaxResults { get; set; }

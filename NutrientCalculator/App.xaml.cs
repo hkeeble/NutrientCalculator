@@ -9,6 +9,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using NutrientCalculator.Resources;
 
+using NutrientCalculator.Source.Pages;
+
 namespace NutrientCalculator
 {
     public partial class App : Application
@@ -88,18 +90,33 @@ namespace NutrientCalculator
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+            deactivatedOrClosed();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            deactivatedOrClosed();
+        }
+
+        private void deactivatedOrClosed()
+        {
             // Remove temporary data
             using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
             {
+
                 if (storage.DirectoryExists("temp"))
+                {
+                    string[] names = storage.GetFileNames("temp\\*");
+                    for (int i = 0; i < names.Length; i++)
+                        storage.DeleteFile("temp\\" + names[i]);
+
                     storage.DeleteDirectory("temp");
+                }
             }
+            if (Main.CurrentUserProfile != null)
+                Main.CurrentUserProfile.Save();
         }
 
         // Code to execute if a navigation fails

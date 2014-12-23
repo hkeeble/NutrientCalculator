@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -7,105 +8,236 @@ namespace FatSecretAPI
     /// <summary>
     /// Represents an individual serving of a particular type of food. Contains all nutrional value for that food.
     /// </summary>
-    [JsonObject(MemberSerialization.OptOut)]
-    class Serving
+    [JsonObject(MemberSerialization.OptIn)]
+    public class Serving
     {
         [JsonProperty("serving_id")]
-        public string ServingID { get; set; }
+        private string servingID;
 
         [JsonProperty("serving_description")]
-        public string ServingDescription { get; set; }
-
-        [JsonProperty("serving_url")]
-        public string ServingURL { get; set; }
-
-        [JsonProperty("metric_serving_amount"), JsonConverter(typeof(TypeConverter<double>))]
-        public double MetricServingAmount { get; set; }
+        private string servingDescription;
 
         [JsonProperty("metric_serving_unit")]
-        public string MetricServingUnit { get; set; }
-
-        [JsonProperty("number_of_units"), JsonConverter(typeof(TypeConverter<double>))]
-        public double NumberOfUnits { get; set; }
+        private string metricServingUnit;
 
         [JsonProperty("measurement_description")]
-        public string MeasurementDescription { get; set; }
+        private string measurementDescription;
+
+        [JsonProperty("serving_url")]
+        private string servingURL;
+
+        [JsonProperty("metric_serving_amount"), JsonConverter(typeof(TypeConverter<double>))]
+        private double metricServingAmount;
+
+        [JsonProperty("number_of_units"), JsonConverter(typeof(TypeConverter<double>))]
+        private double numberOfUnits;
 
         [JsonProperty("calories"), JsonConverter(typeof(TypeConverter<double>))]
-        public double Calories { get; set; }
+        private double calories;
 
         [JsonProperty("carbohydrate"), JsonConverter(typeof(TypeConverter<double>))]
-        public double Carbohydrate { get; set; }
+        private double carbohydrate;
 
         [JsonProperty("protein"), JsonConverter(typeof(TypeConverter<double>))]
-        public double Protein { get; set; }
+        private double protein;
 
         [JsonProperty("fat"), JsonConverter(typeof(TypeConverter<double>))]
-        public double Fat { get; set; }
+        private double fat;
 
         [JsonProperty("saturated_fat"), JsonConverter(typeof(TypeConverter<double>))]
-        public double SaturatedFat { get; set; }
+        private double saturatedFat;
 
         [JsonProperty("polyunsaturated_fat"), JsonConverter(typeof(TypeConverter<double>))]
-        public double PolyunsaturatedFat { get; set; }
+        private double polyunsaturatedFat;
 
         [JsonProperty("monounsaturated_fat"), JsonConverter(typeof(TypeConverter<double>))]
-        public double MonounsaturatedFat { get; set; }
+        private double monounsaturatedFat;
 
         [JsonProperty("trans_fat"), JsonConverter(typeof(TypeConverter<double>))]
-        public double TransFat { get; set; }
+        private double transFat;
 
         [JsonProperty("cholesterol"), JsonConverter(typeof(TypeConverter<double>))]
-        public double Cholesterol { get; set; }
+        private double cholesterol;
 
         [JsonProperty("sodium"), JsonConverter(typeof(TypeConverter<double>))]
-        public double Sodium { get; set; }
+        private double sodium;
 
         [JsonProperty("potassium"), JsonConverter(typeof(TypeConverter<double>))]
-        public double Potassium { get; set; }
+        private double potassium;
 
         [JsonProperty("fiber"), JsonConverter(typeof(TypeConverter<double>))]
-        public double Fiber { get; set; }
+        private double fiber;
 
         [JsonProperty("sugar"), JsonConverter(typeof(TypeConverter<double>))]
-        public double Sugar { get; set; }
+        private double sugar;
 
         [JsonProperty("vitamin_a"), JsonConverter(typeof(TypeConverter<double>))]
-        public double VitaminA { get; set; }
+        private double vitaminA;
 
         [JsonProperty("vitamin_c"), JsonConverter(typeof(TypeConverter<double>))]
-        public double VitaminC { get; set; }
+        private double vitaminC;
 
         [JsonProperty("calcium"), JsonConverter(typeof(TypeConverter<double>))]
-        public double Calcium { get; set; }
+        private double calcium;
 
         [JsonProperty("iron"), JsonConverter(typeof(TypeConverter<double>))]
-        public double Iron { get; set; }
+        private double iron;
+
+        // Public accessors
+        public string ServingID                 { get { return servingID; } }
+        public string ServingDescription        { get { return servingDescription; } }
+        public string ServingURL                { get { return servingURL; } }
+        public double MetricServingAmount       { get { return metricServingAmount; } }
+        public string MetricServingUnit         { get { return metricServingUnit; } }
+        public double NumberOfUnits             { get { return numberOfUnits; } }
+        public string MeasurementDescription    { get { return measurementDescription; } }
+        public double Calories                  { get { return calories; } }
+        public double Carbohydrate              { get { return carbohydrate; } }
+        public double Protein                   { get { return protein; } }
+        public double Fat                       { get { return fat; } }
+        public double SaturatedFat              { get { return saturatedFat; } }
+        public double PolyunsaturatedFat        { get { return polyunsaturatedFat; } }
+        public double MonounsaturatedFat        { get { return monounsaturatedFat; } }
+        public double TransFat                  { get { return transFat; } }
+        public double Cholesterol               { get { return cholesterol; } }
+        public double Sodium                    { get { return sodium; } }
+        public double Potassium                 { get { return potassium; } }
+        public double Fiber                     { get { return fiber; } }
+        public double Sugar                     { get { return sugar; } }
+        public double VitaminA                  { get { return vitaminA; } }
+        public double VitaminC                  { get { return vitaminC; } }
+        public double Calcium                   { get { return calcium; } }
+        public double Iron                      { get { return iron; } }
+
+        /// <summary>
+        /// Creates a version of this serving with 1 metric unit, nutrients are adjusted accordingly.
+        /// </summary>
+        /// <returns></returns>
+        public Serving CreateBase()
+        {
+            Serving serving = new Serving();
+
+            double original = MetricServingAmount;
+
+            if (original != 0)
+            {
+                serving.metricServingAmount = 1.0;
+                serving.calories = Calories / original;
+                serving.carbohydrate = Carbohydrate / original;
+                serving.protein = Protein / original;
+                serving.fat = Fat / original;
+                serving.saturatedFat = SaturatedFat / original;
+                serving.polyunsaturatedFat = PolyunsaturatedFat / original;
+                serving.monounsaturatedFat = MonounsaturatedFat / original;
+                serving.transFat = TransFat / original;
+                serving.cholesterol = Cholesterol / original;
+                serving.sodium = Sodium / original;
+                serving.potassium = Potassium / original;
+                serving.fiber = Fiber / original;
+                serving.sugar = Sugar / original;
+                serving.vitaminA = VitaminA / original;
+                serving.vitaminC = VitaminC / original;
+                serving.calcium = Calcium / original;
+                serving.iron = Iron / original;
+
+                serving.metricServingUnit = MetricServingUnit;
+                serving.servingDescription = "1" + MetricServingUnit;
+            }
+            else // If there is no metric serving amount, use the serving measurement description
+            {
+                serving.metricServingAmount = 1.0;
+                serving.calories = Calories;
+                serving.carbohydrate = Carbohydrate;
+                serving.protein = Protein;
+                serving.fat = Fat;
+                serving.saturatedFat = SaturatedFat;
+                serving.polyunsaturatedFat = PolyunsaturatedFat;
+                serving.monounsaturatedFat = MonounsaturatedFat;
+                serving.transFat = TransFat;
+                serving.cholesterol = Cholesterol;
+                serving.sodium = Sodium;
+                serving.potassium = Potassium;
+                serving.fiber = Fiber;
+                serving.sugar = Sugar;
+                serving.vitaminA = VitaminA;
+                serving.vitaminC = VitaminC;
+                serving.calcium = Calcium;
+                serving.iron = Iron;
+
+                serving.metricServingUnit = " x " + ServingDescription;
+                serving.servingDescription = "1" + MetricServingUnit;
+            }
+
+            return serving;
+        }
+
+        /// <summary>
+        /// Creates a multiple of this serving, multiplying all nutrients by the given unit.
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public Serving CreateMultiple(double amount)
+        {
+            Serving serving = new Serving();
+
+            serving.metricServingAmount = amount;
+ 
+            serving.calories = Calories * amount;
+            serving.carbohydrate = Carbohydrate * amount;
+            serving.protein = Protein * amount;
+            serving.fat = Fat * amount;
+            serving.saturatedFat = SaturatedFat * amount;
+            serving.polyunsaturatedFat = PolyunsaturatedFat * amount;
+            serving.monounsaturatedFat = MonounsaturatedFat * amount;
+            serving.transFat = TransFat * amount;
+            serving.cholesterol = Cholesterol * amount;
+            serving.sodium = Sodium * amount;
+            serving.potassium = Potassium * amount;
+            serving.fiber = Fiber * amount;
+            serving.sugar = Sugar * amount;
+            serving.vitaminA = VitaminA * amount;
+            serving.vitaminC = VitaminC * amount;
+            serving.calcium = Calcium * amount;
+            serving.iron = Iron * amount;
+
+            serving.metricServingUnit = MetricServingUnit;
+            serving.servingDescription = Convert.ToString(amount) + serving.MetricServingUnit;
+
+            return serving;
+        }
     }
 
     /// <summary>
     /// Represents an individual type of food.
     /// </summary>
-    [JsonObject(MemberSerialization.OptOut)]
-    class Food
+    [JsonObject(MemberSerialization.OptIn)]
+    public class Food
     {
         [JsonProperty("food_id")]
-        public string ID { get; set; }
+        private string id;
 
         [JsonProperty("food_name")]
-        public string Name { get; set; }
+        private string name;
 
         [JsonProperty("food_type")]
-        public string Type { get; set; }
+        private string type;
 
         [JsonProperty("brand_name")]
-        public string Brand { get; set; }
+        private string brand;
 
         [JsonProperty("food_url")]
-        public string URL { get; set; }
+        private string url;
 
         [JsonProperty("servings"), JsonConverter(typeof(ServingListConverter))]
-        public Dictionary<string, Serving> servings;
+        private Dictionary<string, Serving> servings;
+
+        // Public accessors
+        public string ID { get { return id; } }
+        public string Name { get { return name; } }
+        public string Type { get { return type; } }
+        public string Brand { get { return brand; } }
+        public string URL { get { return url; } }
+        public Dictionary<string, Serving> Servings { get { return servings; } }
 
         /// <summary>
         /// Retrieve a serving type by ID.

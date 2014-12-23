@@ -96,7 +96,8 @@ namespace Assignment
 
             if(selectedProfile != null)
             {
-                NavigationData data = new NavigationData(PageID, NavigationData.ACCEPT);
+                selectedProfile.LoadData(); // Load all profile data
+                NavigationData data = new NavigationData(PageID, NavigationData.ACCEPT, Main.PageID);
                 NavigationService.Navigate(new Uri("/Source/Pages/Main.xaml?" + data.Build(), UriKind.Relative));
             }
         }
@@ -105,7 +106,12 @@ namespace Assignment
         {
             Page destination = e.Content as Page;
             if(destination is Main)
-                (destination as Main).currentUserProfile = selectedProfile;
+                Main.CurrentUserProfile = selectedProfile;
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Terminate();
         }
 
         // Sample code for building a localized ApplicationBar

@@ -28,19 +28,17 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,79,12,0">
-            <ListBox Height="516" HorizontalAlignment="Left" Name="profileList" VerticalAlignment="Top" Width="456">
+            <ListBox SelectionChanged="servingSelectionChanged" Height="392" HorizontalAlignment="Left" Name="servingList" VerticalAlignment="Top" Width="456" Margin="0,22,0,0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Height="200">
-                            <StackPanel Width="370">
-                                <TextBlock Text="{Binding ServingDescription}" Foreground="#FFC8AB14" FontSize="28" />
-                            </StackPanel>
-                        </StackPanel>
+                        <TextBlock Height="65" Text="{Binding ServingDescription}" Foreground="White" FontSize="28" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            <Button x:Name="customServingButton" Content="Enter Custom Serving" HorizontalAlignment="Left" Margin="30,452,0,0" VerticalAlignment="Top" Width="395" Tap="customServingButton_Tap"/>
+            <TextBlock HorizontalAlignment="Left" Margin="201,420,0,0" TextWrapping="Wrap" Text="OR:" VerticalAlignment="Top" FontSize="24"/>
         </Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="26,22,0,0" Grid.Row="1" TextWrapping="Wrap" Text="FoodName" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" RenderTransformOrigin="0.44,0.604"/>
+        <TextBlock x:Name="foodName" HorizontalAlignment="Left" Margin="17,158,0,0" TextWrapping="Wrap" Text="FoodName" MaxWidth="425" VerticalAlignment="Top" FontWeight="Bold" FontSize="24" RenderTransformOrigin="0.392,-0.142" Grid.RowSpan="2"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

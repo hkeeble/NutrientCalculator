@@ -10,6 +10,8 @@ using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 
+using FatSecretAPI;
+using Assignment;
 using Newtonsoft.Json;
 
 namespace Assignment
@@ -28,23 +30,23 @@ namespace Assignment
         {
             Fibre = 24;
             Salt = 6;
-            if(gender == Gender.MALE)
+            if (gender == Gender.MALE)
             {
-                    Calories = 2500;
-                    Protein = 55;
-                    Carbohydrate = 300;
-                    Sugars = 120;
-                    Fat = 95;
-                    Saturates = 30;
+                Calories = 2500;
+                Protein = 55;
+                Carbohydrate = 300;
+                Sugars = 120;
+                Fat = 95;
+                Saturates = 30;
             }
             else
             {
-                    Calories = 2000;
-                    Protein = 45;
-                    Carbohydrate = 230;
-                    Sugars = 90;
-                    Fat = 70;
-                    Saturates = 20;
+                Calories = 2000;
+                Protein = 45;
+                Carbohydrate = 230;
+                Sugars = 90;
+                Fat = 70;
+                Saturates = 20;
             }
         }
     }
@@ -108,14 +110,14 @@ namespace Assignment
             double tolDecimal = tolerance / 100;
 
             // Initialize all ranges, using tolerance
-            spec.Calories       = new Range(gda.Calories, tolerance);
-            spec.Protein        = new Range(gda.Protein, tolerance);
-            spec.Carbohydrate   = new Range(gda.Carbohydrate, tolerance);
-            spec.Sugars         = new Range(gda.Sugars, tolerance);
-            spec.Fat            = new Range(gda.Fat, tolerance);
-            spec.Saturates      = new Range(gda.Saturates, tolerance);
-            spec.Fibre          = new Range(gda.Fibre, tolerance);
-            spec.Salt           = new Range(gda.Salt, tolerance);
+            spec.Calories = new Range(gda.Calories, tolerance, tolerance);
+            spec.Protein = new Range(gda.Protein, tolerance, tolerance);
+            spec.Carbohydrate = new Range(gda.Carbohydrate, tolerance, tolerance);
+            spec.Sugars = new Range(gda.Sugars, tolerance, tolerance);
+            spec.Fat = new Range(gda.Fat, tolerance, tolerance);
+            spec.Saturates = new Range(gda.Saturates, tolerance, tolerance);
+            spec.Fibre = new Range(gda.Fibre, tolerance, tolerance);
+            spec.Salt = new Range(gda.Salt, tolerance, tolerance);
 
             return spec;
         }
@@ -124,21 +126,48 @@ namespace Assignment
     /// <summary>
     /// Represents a user profile.
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class UserProfile
     {
-        // Serializable/Deserializable values
-        public string Name { get; set; }
-        public string ImageLocation { get; set; }
-        public DietSpecification DietSpecifications { get; set; }
-        public Gender Gender { get; set; }
-        public double ImageRotation { get; set; }
+        [JsonProperty]
+        private string name;
 
-        [JsonIgnore]
+        [JsonProperty]
+        private string profileDirectory;
+
+        [JsonProperty]
+        private string imageLocation;
+
+        [JsonProperty]
+        private DietSpecification dietSpecifications;
+
+        [JsonProperty]
+        private Gender gender;
+
+        [JsonProperty, JsonConverter(typeof(TypeConverter<double>))]
+        private double imageRotation;
+
+        [JsonProperty]
+        private DailyTracker currentDayTracker;
+        
+        private List<DailyTracker> weeklyData;
+        private List<CustomRecipe> recipes;
+
+        // Public accessors
+        public string Name                          { get { return name; } }
+        public string ProfileDirectory              { get { return profileDirectory; } }
+        public string ImageLocation                 { get { return imageLocation; } }
+        public DietSpecification DietSpecifications { get { return dietSpecifications; } }
+        public Gender Gender                        { get { return gender; } }
+        public double ImageRotation                 { get { return imageRotation; } }
+        public DailyTracker CurrentDayTracker       { get { return currentDayTracker; } }
+        public List<CustomRecipe> Recipes           { get { return recipes; } }
+        public List<DailyTracker> WeeklyTrackerData { get { return weeklyData; } }
+
         private BitmapImage image;
 
-        [JsonIgnore]
         public BitmapImage Image { get { return image; } }
-        
+
         public UserProfile()
         {
 
@@ -151,10 +180,14 @@ namespace Assignment
         /// <param name="gender">Gender of the profile.</param>
         private UserProfile(string name, Gender gender, string imageURI)
         {
-            Name = name;
-            Gender = gender;
-            ImageLocation = imageURI;
-            DietSpecifications = DietSpecification.createGDA(gender, 5f);
+            this.name = name;
+            this.gender = gender;
+            this.imageLocation = imageURI;
+            this.dietSpecifications = DietSpecification.createGDA(gender, 5f);
+
+            weeklyData = new List<DailyTracker>();
+            recipes = new List<CustomRecipe>();
+            currentDayTracker = new DailyTracker();
         }
 
         /// <summary>
@@ -166,6 +199,8 @@ namespace Assignment
         /// <returns></returns>
         public static UserProfile Create(string name, Gender gender, string tempImageLocation)
         {
+            LoadingBar.Show("Creating new profile...");
+
             // Create folder structure
             using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
             {
@@ -178,14 +213,14 @@ namespace Assignment
 
                 // Retrieve temporary image
                 BitmapImage image = new BitmapImage();
-                using(IsolatedStorageFileStream stream = storage.OpenFile(tempImageLocation, FileMode.Open, FileAccess.Read))
+                using (IsolatedStorageFileStream stream = storage.OpenFile(tempImageLocation, FileMode.Open, FileAccess.Read))
                 {
                     image.SetSource(stream);
                     stream.Close();
                 }
 
                 // Save to a permanent location
-                using(IsolatedStorageFileStream stream = storage.CreateFile(@"profiles\" + name + @"\" + name + "_picture.jpg"))
+                using (IsolatedStorageFileStream stream = storage.CreateFile(@"profiles\" + name + @"\" + name + "_picture.jpg"))
                 {
                     WriteableBitmap writable = new WriteableBitmap(image);
                     writable.SaveJpeg(stream, writable.PixelWidth, writable.PixelHeight, 0, 90);
@@ -199,13 +234,68 @@ namespace Assignment
 
 
             UserProfile profile = new UserProfile(name, gender, @"profiles\" + name + @"\" + name + "_picture.jpg");
+            profile.profileDirectory = @"profiles\" + name + @"\";
             profile.Save();
             profile.LoadImage();
+
+            LoadingBar.Hide();
+
             return profile;
+        }
+
+        /// <summary>
+        /// Loads all data not stored in the profile's JSON file (recipes and tracker files).
+        /// </summary>
+        public void LoadData()
+        {
+            LoadingBar.Show("Loading Profile Data...");
+
+            recipes = new List<CustomRecipe>();
+            weeklyData = new List<DailyTracker>();
+
+            // Load existing recipes
+            using(IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                if (!storage.DirectoryExists(ProfileDirectory + @"\recipes\"))
+                    storage.CreateDirectory(ProfileDirectory + @"\recipes\");
+
+                string[] recipeNames = storage.GetFileNames(ProfileDirectory + @"recipes\*");
+                foreach (string recipeName in recipeNames)
+                {
+                    using (StreamReader reader = new StreamReader(storage.OpenFile(ProfileDirectory + @"recipes\" + recipeName, FileMode.Open)))
+                    {
+                        string data = reader.ReadToEnd();
+                        CustomRecipe loadedRecipe = JsonConvert.DeserializeObject<CustomRecipe>(data);
+                        recipes.Add(loadedRecipe);
+                        reader.Close();
+                    }
+                }
+            }
+
+            // Load weekly data
+
+            LoadingBar.Hide();
+        }
+
+        /// <summary>
+        /// Update all data according to the current time.
+        /// </summary>
+        /// <param name="currentTime">The current time.</param>
+        public void UpdateTime(DateTime currentTime)
+        {
+            if(currentDayTracker.EndTime <= currentTime)
+            {
+                if(weeklyData.Count > 6)
+                    weeklyData.RemoveAt(0);
+                weeklyData.Add(currentDayTracker);
+                currentDayTracker = new DailyTracker();
+            }
         }
 
         public void Save()
         {
+            LoadingBar.Show("Saving Data...");
+
             JsonSerializerSettings settings = new JsonSerializerSettings() { ContractResolver = new PrivateMembersContractResolver() };
             string output = JsonConvert.SerializeObject(this, settings);
 
@@ -216,34 +306,155 @@ namespace Assignment
 
                 try
                 {
-                    StreamWriter writer = new StreamWriter(new IsolatedStorageFileStream(@"profiles\" + Name + @"\" + fileName, FileMode.CreateNew, storage));
+                    // Main data
+                    StreamWriter writer = new StreamWriter(new IsolatedStorageFileStream(ProfileDirectory + fileName, FileMode.Create, storage));
                     writer.Write(output);
                     writer.Close();
+
+                    // Tracking data
+                    writer = new StreamWriter(storage.OpenFile(ProfileDirectory + "todayData.json", FileMode.Create));
+                    string data = JsonConvert.SerializeObject(currentDayTracker);
+                    writer.Write(data);
+                    writer.Close();
+
+                    // Delete existing tracking data
+                    if(storage.DirectoryExists(ProfileDirectory + "weeklyData"))
+                    {
+                        string[] files = storage.GetFileNames(ProfileDirectory + "weeklyData\\*");
+                        for(int i = 0; i < files.Length; i++)
+                            storage.DeleteFile(ProfileDirectory + "weeklyData\\" + files[i]);
+                    }
+                    else
+                        storage.CreateDirectory(ProfileDirectory + "weeklyData");
+
+                    for(int i = 0; i < weeklyData.Count; i++)
+                    {
+                        writer = new StreamWriter(storage.OpenFile(ProfileDirectory + "weeklyData\\" + weeklyData[i].StartTime.DayOfWeek.ToString() + ".json", FileMode.Create));
+                        writer.Write(JsonConvert.SerializeObject(weeklyData[i]));
+                        writer.Close();
+                    }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     MessageBox.Show("Error saving profile data: " + e.Message, "I/O Error", MessageBoxButton.OK);
                 }
             }
+
+            LoadingBar.Hide();
         }
 
         public void LoadImage()
         {
-            using(IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
             {
                 try
                 {
-                    using(IsolatedStorageFileStream stream = storage.OpenFile(ImageLocation, FileMode.Open, FileAccess.Read))
+                    using (IsolatedStorageFileStream stream = storage.OpenFile(ImageLocation, FileMode.Open, FileAccess.Read))
                     {
                         image = new BitmapImage();
                         image.SetSource(stream);
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     MessageBox.Show("Error, failed to load profile image for profile " + Name + ":" + e.Message, "I/O Error", MessageBoxButton.OK);
                 }
             }
+        }
+
+        public bool RecipeExists(string name)
+        {
+            bool exists = false;
+            foreach (CustomRecipe existingRecipe in recipes)
+            {
+                if (existingRecipe.Name == name)
+                {
+                    exists = true;
+                    break;
+                }
+            }
+            return exists;
+        }
+
+        /// <summary>
+        /// Save the given recipe to this user's user directory.
+        /// </summary>
+        /// <param name="recipe">The recipe to save.</param>
+        public void SaveRecipe(CustomRecipe recipe)
+        {
+            LoadingBar.Show("Saving Recipe...");
+
+            // Check for existing...
+            int index = 0;
+            bool exists = false;
+            for(int i = 0; i < recipes.Count; i++)
+            {
+                if (recipes[i].Name == recipe.Name)
+                {
+                    index = i;
+                    exists = true;
+                }
+            }
+
+            // If the recipe exists, modify it, otherwise add a new recipe
+            if (exists)
+                recipes[index] = recipe;
+            else
+                recipes.Add(recipe);
+
+            using (IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                JsonSerializerSettings settings = new JsonSerializerSettings() { ContractResolver = new PrivateMembersContractResolver() };
+                string data = JsonConvert.SerializeObject(recipe, settings);
+
+                try
+                {
+                    if (!storage.DirectoryExists(ProfileDirectory + @"\recipes\"))
+                        storage.CreateDirectory(ProfileDirectory + @"\recipes\");
+
+                    using (StreamWriter stream = new StreamWriter(storage.OpenFile(ProfileDirectory + @"\recipes\" + recipe.Name + ".json", FileMode.Create)))
+                    {
+                        stream.Write(data);
+                        stream.Close();
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error, failed to save recipe " + recipe.Name + ":" + e.Message, "I/O Error", MessageBoxButton.OK);
+                }
+            }
+
+            LoadingBar.Hide();
+        }
+
+        public bool DeleteRecipe(string recipeName)
+        {
+            bool success = false;
+            for (int i = 0; i < recipes.Count; i++)
+            {
+                if (recipes[i].Name == recipeName)
+                {
+                    success = true;
+                    
+                    // Delete the file in storage
+                    using(IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication())
+                    {
+                        try
+                        {
+                            storage.DeleteFile(ProfileDirectory + @"recipes\" + recipeName + ".json");
+                        }
+                        catch(Exception e)
+                        {
+                            MessageBox.Show("Error, failed to delete recipe " + recipeName + ": " + e.Message, "I/O Error", MessageBoxButton.OK);
+                        }
+                    }
+                    
+                    recipes.RemoveAt(i);
+                    break;
+                }
+            }
+
+            return success;
         }
     }
 }

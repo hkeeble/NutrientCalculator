@@ -31,7 +31,7 @@
             <ListBox SelectionChanged="foodList_selectionChaged" Height="433" HorizontalAlignment="Left" x:Name="foodList" VerticalAlignment="Top" Width="456" Margin="0,96,0,0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}" Height="65" VerticalAlignment="Center" Foreground="#FFC8AB14" FontSize="28" />
+                        <TextBlock Text="{Binding Name}" Height="65" VerticalAlignment="Center" Foreground="White" FontSize="28" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

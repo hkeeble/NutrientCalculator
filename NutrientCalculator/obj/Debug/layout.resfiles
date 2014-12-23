@@ -12,9 +12,12 @@ Assets\Tiles\FlipCycleTileSmall.png
 Assets\Tiles\IconicTileMediumLarge.png
 Assets\Tiles\IconicTileSmall.png
 Assets\WideLogo.png
+Images\addAMealToTodayTile.png
+Images\browseMyRecipesTile.png
 Images\buildRecipeTile.png
 Images\defaultProfile.png
-Images\modifyDietTile.png
-Images\searchRecipesTile.png
+Images\defaultRecipe.png
+Images\searchFatSecretRecipesTile.png
+Images\searchNutrientCalculatorRecipesTile.png
 Images\weeklySummaryTile.png
 ServiceReferences.ClientConfig

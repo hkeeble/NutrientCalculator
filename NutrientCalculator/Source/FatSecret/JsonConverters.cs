@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -25,26 +26,51 @@ namespace FatSecretAPI
             List<JObject> objects = new List<JObject>();
 
             JToken token = jo.SelectToken("serving");
-            JArray array = JArray.Parse(token.ToString());
 
-            List<Serving> servingsList = JsonConvert.DeserializeObject<List<Serving>>(array.ToString());
-
-            Dictionary<string, Serving> dict = new Dictionary<string, Serving>();
-
-            foreach (Serving serving in servingsList)
-            {
-                dict.Add(serving.ServingID, serving);
+            // Attempt to parse as both array and token (some lists will only contain a single serving type)
+            JArray array = new JArray();
+            bool isArray = false;
+            try {
+                array = JArray.Parse(token.ToString());
+                isArray = true;
             }
+            catch {
+                isArray = false;
+            }
+
+            // Determine how to deserialize based on data type
+            List<Serving> servingsList = new List<Serving>();
+            if(isArray)
+                servingsList = JsonConvert.DeserializeObject<List<Serving>>(array.ToString());
+            else
+                servingsList.Add(JsonConvert.DeserializeObject<Serving>(token.ToString()));
+
+            // Create a dictionary for faster retrieval later on
+            Dictionary<string, Serving> dict = new Dictionary<string, Serving>();
+            foreach (Serving serving in servingsList)
+                dict.Add(serving.ServingID, serving);
 
             return dict;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new System.NotImplementedException();
+            Dictionary<string, Serving> servings = value as Dictionary<string, Serving>;
+
+            writer.WriteStartObject();
+            writer.WritePropertyName("serving");
+            writer.WriteStartArray();
+            foreach (KeyValuePair<string, Serving> e in servings)
+                serializer.Serialize(writer, e.Value);
+            writer.WriteEndArray();
+            writer.WriteEndObject();
         }
     }
 
+    /// <summary>
+    /// Converts a Json Array into a list, containing items of type T.
+    /// </summary>
+    /// <typeparam name="T">The type of data in the list.</typeparam>
     public class ListConverter<T> : JsonConverter
     {
         public ListConverter()

@@ -49,10 +49,13 @@ C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculat
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\WriteableBitmapExWinPhoneXnaDependant.xml
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\Main.g.cs
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Bin\Debug\Microsoft.Phone.Controls.dll
-C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\DietModifier.g.cs
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\RecipeBuilder.g.cs
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\RecipeInfo.g.cs
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\RecipeSearch.g.cs
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\WeeklySummary.g.cs
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\FoodSearch.g.cs
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\ServingViewer.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\CustomServingPage.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\CustomRecipeViewer.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\MealPicker.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\UploadRecipe.g.cs

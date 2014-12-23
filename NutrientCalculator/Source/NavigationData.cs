@@ -12,6 +12,7 @@ namespace Assignment
 
         public static readonly string RESULT = "result";
         public static readonly string PAGE_ID = "pageID";
+        public static readonly string TARGET_PAGE_ID = "targetPageID";
         public static readonly string PROFILE_NAME = "profileName";
         public static readonly string PROFILE_IMAGE = "profileImage";
         public static readonly string PROFILE_GENDER = "gender";
@@ -31,10 +32,11 @@ namespace Assignment
         /// </summary>
         /// <param name="PageID">The ID given to this page.</param>
         /// <param name="result">The result fo the navigation.</param>
-        public NavigationData(string PageID, string result) : this()
+        public NavigationData(string PageID, string result, string targetPageID) : this()
         {
             data.Add(PAGE_ID, PageID);
             data.Add(RESULT, result);
+            data.Add(TARGET_PAGE_ID, targetPageID);
         }
 
         /// <summary>
@@ -61,6 +63,14 @@ namespace Assignment
         public string GetPageID()
         {
             return Get(PAGE_ID);
+        }
+
+        /// <summary>
+        /// Retrieve the ID of the page being navigated to.
+        /// </summary>
+        public string GetTargetPageID()
+        {
+            return Get(TARGET_PAGE_ID);
         }
 
         /// <summary>

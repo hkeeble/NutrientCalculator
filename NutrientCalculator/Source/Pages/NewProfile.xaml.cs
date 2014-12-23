@@ -72,7 +72,7 @@ namespace NutrientCalculator.Source.Pages
         {
             if (nameTextBox.Text.Length < 16 && nameTextBox.Text.Length > 0)
             {
-                NavigationData data = new NavigationData(PageID, NavigationData.ACCEPT);
+                NavigationData data = new NavigationData(PageID, NavigationData.ACCEPT, MainPage.PageID);
                 data.AddData(NavigationData.PROFILE_NAME, nameTextBox.Text);
 
                 // Save temporary profile pic to isolated storage for later use

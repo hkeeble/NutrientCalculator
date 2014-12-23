@@ -22,13 +22,40 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="RECIPE BUILDER" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="NUTRIENT CALCULATOR" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="Build Recipe" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button Name="addFoodButton" HorizontalAlignment="Left" Margin="79,61,0,0" VerticalAlignment="Top" Width="202" Height="95" Content="Add Food" Tap="addFoodButton_Tap"/>
+            <Button Name="addFoodButton" HorizontalAlignment="Left" Margin="5,438,0,0" VerticalAlignment="Top" Width="449" Height="73" Content="Add Ingredient" Tap="addFoodButton_Tap"/>
+            <Button x:Name="okButton" Content="Save" HorizontalAlignment="Left" Margin="222,502,0,0" VerticalAlignment="Top" Click="okButtonClick" Width="232"/>
+            <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="6,501,0,0" VerticalAlignment="Top" Click="cancelButtonClick" Width="231"/>
+            <TextBox x:Name="recipeName"  HorizontalAlignment="Left" Height="72" Margin="83,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="370"/>
+            <TextBlock HorizontalAlignment="Left" Margin="13,22,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" Width="63"/>
+
+            <ListBox SelectionChanged="ingredientList_selectionChanged" Height="367" HorizontalAlignment="Left" x:Name="ingredientList" VerticalAlignment="Top" Width="456" Margin="-1,68,0,0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid MaxHeight="200" VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="200" Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0">
+                                <TextBlock Grid.Column="0" Text="{Binding Serving.ServingDescription}" MaxWidth="250" TextWrapping="Wrap" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="#FFC8AB14" FontSize="28"/>
+                                <TextBlock Grid.Column="0" Margin="0,0,0,20" Text="{Binding FoodItem.Name}" MaxWidth="250" TextWrapping="Wrap" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="#ffffffff" FontSize="28" />
+                            </StackPanel>                           
+                            <Button Grid.Row="0" Grid.Column="1" Content="Change" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="80" Width="auto" Click="changeServingButtonClick"/>
+                            <Button Grid.Row="0" Grid.Column="2" Content="X" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="80" Width="auto" Click="deleteButtonClick"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
         </Grid>
     </Grid>

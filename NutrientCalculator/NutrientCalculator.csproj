@@ -109,6 +109,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Source\CustomRecipe.cs" />
+    <Compile Include="Source\DailyTracker.cs" />
     <Compile Include="Source\FatSecret\Error.cs" />
     <Compile Include="Source\FatSecret\FatSecretService.cs" />
     <Compile Include="Source\FatSecret\Food.cs" />
@@ -117,15 +119,24 @@
     <Compile Include="Source\FatSecret\RecipeSearch.cs" />
     <Compile Include="Source\FatSecret\SearchResult.cs" />
     <Compile Include="Source\FatSecret\JsonConverters.cs" />
+    <Compile Include="Source\Ingredient.cs" />
+    <Compile Include="Source\LoadingBarUtil.cs" />
     <Compile Include="Source\NavigationData.cs" />
-    <Compile Include="Source\Pages\DietModifier.xaml.cs">
-      <DependentUpon>DietModifier.xaml</DependentUpon>
+    <Compile Include="Source\NutrientData.cs" />
+    <Compile Include="Source\Pages\CustomRecipeViewer.xaml.cs">
+      <DependentUpon>CustomRecipeViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Pages\CustomServingPage.xaml.cs">
+      <DependentUpon>CustomServingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\Pages\FoodSearch.xaml.cs">
       <DependentUpon>FoodSearch.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\Pages\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Pages\MealPicker.xaml.cs">
+      <DependentUpon>MealPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\Pages\NewProfile.xaml.cs">
       <DependentUpon>NewProfile.xaml</DependentUpon>
@@ -141,6 +152,9 @@
     </Compile>
     <Compile Include="Source\Pages\ServingViewer.xaml.cs">
       <DependentUpon>ServingViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Pages\UploadRecipe.xaml.cs">
+      <DependentUpon>UploadRecipe.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\Pages\WeeklySummary.xaml.cs">
       <DependentUpon>WeeklySummary.xaml</DependentUpon>
@@ -159,7 +173,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Source\Pages\DietModifier.xaml">
+    <Page Include="Source\Pages\CustomRecipeViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Pages\CustomServingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Source\Pages\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Pages\MealPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Source\Pages\ServingViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Pages\UploadRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -223,12 +249,15 @@
     <None Include="Service References\SADService\Service13.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Images\addAMealToTodayTile.png" />
+    <Content Include="Images\browseMyRecipesTile.png" />
     <Content Include="Images\buildRecipeTile.png" />
     <Content Include="Images\defaultProfile.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\modifyDietTile.png" />
-    <Content Include="Images\searchRecipesTile.png" />
+    <Content Include="Images\defaultRecipe.png" />
+    <Content Include="Images\searchFatSecretRecipesTile.png" />
+    <Content Include="Images\searchNutrientCalculatorRecipesTile.png" />
     <Content Include="Images\weeklySummaryTile.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>

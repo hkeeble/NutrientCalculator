@@ -8,7 +8,7 @@ namespace FatSecretAPI
     /// Represents an individual result in a food search.
     /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
-    class FoodSearchResult
+    public class FoodSearchResult
     {
         [JsonProperty("food_id")]
         public string ID { get; set; }
@@ -33,7 +33,7 @@ namespace FatSecretAPI
     /// Represents the results of a food search.
     /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
-    class FoodSearchResults : SearchResult
+    public class FoodSearchResults : SearchResult
     {
         [JsonProperty("food"), JsonConverter(typeof(ListConverter<List<FoodSearchResult>>))]
         public List<FoodSearchResult> Results;
