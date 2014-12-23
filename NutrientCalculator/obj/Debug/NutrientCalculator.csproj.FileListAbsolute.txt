@@ -59,3 +59,5 @@ C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculat
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\CustomRecipeViewer.g.cs
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\MealPicker.g.cs
 C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\UploadRecipe.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\UserRecipeBrowser.g.cs
+C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\obj\Debug\Source\Pages\SearchUserRecipes.g.cs

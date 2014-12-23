@@ -14,10 +14,11 @@ Assets\Tiles\IconicTileSmall.png
 Assets\WideLogo.png
 Images\addAMealToTodayTile.png
 Images\browseMyRecipesTile.png
+Images\browseUserRecipes.png
 Images\buildRecipeTile.png
 Images\defaultProfile.png
 Images\defaultRecipe.png
 Images\searchFatSecretRecipesTile.png
-Images\searchNutrientCalculatorRecipesTile.png
+Images\searchUserRecipesTile.png
 Images\weeklySummaryTile.png
 ServiceReferences.ClientConfig

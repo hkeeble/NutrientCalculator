@@ -35,18 +35,20 @@
                 </Grid>
             </phone:PanoramaItem>
 
-            <phone:PanoramaItem Header="Search">
+            <phone:PanoramaItem Header="Inspiration">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Row="0" Grid.Column="0" x:Name="searchNutrientRecipesTile" Stretch="None" Source="/Images/searchNutrientCalculatorRecipesTile.png" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="200" Margin="0,0,0,0" Tap="nutrientCalculatorRecipeSearch_Tap"/>
+                    <Image Grid.Row="0" Grid.Column="0" x:Name="browseUserRecipesTile" Stretch="None" Source="/Images/browseUserRecipes.png" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="200" Margin="0,0,0,0" Tap="browseUserRecipes_Tap"/>
                     <Image Grid.Row="0" Grid.Column="1" x:Name="searchFatSecretRecipesTile" Stretch="None" Source="/Images/searchFatSecretRecipesTile.png" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="200" Margin="0,0,0,0" Tap="fatSecretRecipeSearch_Tap" />
-                 </Grid>
+                    <Image Grid.Row="1" Grid.Column="0" x:Name="searchUserRecipesTile" Stretch="None" Source="/Images/searchUserRecipesTile.png" HorizontalAlignment="Left" Height="201" VerticalAlignment="Top" Width="200" Margin="0,0,0,0" Tap="searchUserRecipes_Tap" />
+                </Grid>
             </phone:PanoramaItem>
 
             <!--Panorama item two-->
@@ -64,6 +66,7 @@
                             <TextBlock Text="Total Consumption:" FontSize="24" FontWeight="Bold" />
                             <TextBlock x:Name="CaloriesTotal" Text="Calories:" />
                             <TextBlock x:Name="ProteinTotal" Text="Protein:" />
+                            <TextBlock x:Name="CarbohydrateTotal" Text="Carbohydrate:" />
                             <TextBlock x:Name="SugarsTotal" Text="Sugars:" />
                             <TextBlock x:Name="FatTotal" Text="Fat:" />
                             <TextBlock x:Name="SaturatesTotal" Text="Saturates:" />

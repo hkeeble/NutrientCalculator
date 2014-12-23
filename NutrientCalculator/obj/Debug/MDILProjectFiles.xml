@@ -5,11 +5,12 @@
     <File>NutrientCalculator.dll</File>
     <File>Images\addAMealToTodayTile.png</File>
     <File>Images\browseMyRecipesTile.png</File>
+    <File>Images\browseUserRecipes.png</File>
     <File>Images\buildRecipeTile.png</File>
     <File>Images\defaultProfile.png</File>
     <File>Images\defaultRecipe.png</File>
     <File>Images\searchFatSecretRecipesTile.png</File>
-    <File>Images\searchNutrientCalculatorRecipesTile.png</File>
+    <File>Images\searchUserRecipesTile.png</File>
     <File>Images\weeklySummaryTile.png</File>
     <File>ServiceReferences.ClientConfig</File>
     <File>Assets\AlignmentGrid.png</File>

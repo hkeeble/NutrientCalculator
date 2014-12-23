@@ -28,14 +28,21 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBlock x:Name="recipeLabel" HorizontalAlignment="Left" Margin="18,18,0,0" TextWrapping="Wrap" Text="Uploading Recipe: " VerticalAlignment="Top"/>
-            <Image x:Name="recipeImage" Source="/Images/defaultRecipe.png" Stretch="Fill" HorizontalAlignment="Left" Height="357" Margin="53,128,0,0" VerticalAlignment="Top" Width="343" Tap="recipeImage_Tap"/>
-            <TextBlock HorizontalAlignment="Left" Margin="22,94,0,0" TextWrapping="Wrap" Text="Image:" VerticalAlignment="Top"/>
-            <Button x:Name="captureButton" Content="Capture..." HorizontalAlignment="Left" Margin="1,480,0,0" VerticalAlignment="Top" Click="captureButton_Click" Width="227"/>
-            <Button x:Name="chooseButton" Content="Choose..." HorizontalAlignment="Left" Margin="221,479,0,0" VerticalAlignment="Top" Width="223" Click="chooseButtonClick"/>
+            <TextBlock x:Name="recipeLabel" HorizontalAlignment="Left" Margin="19,1,0,0" TextWrapping="Wrap" Text="Uploading Recipe: " VerticalAlignment="Top"/>
+            <Image x:Name="recipeImage" Source="/Images/defaultRecipe.png" Stretch="Fill" HorizontalAlignment="Left" Height="216" Margin="18,86,0,0" VerticalAlignment="Top" Width="208" Tap="recipeImage_Tap"/>
+            <TextBlock HorizontalAlignment="Left" Margin="18,56,0,0" TextWrapping="Wrap" Text="Image:" VerticalAlignment="Top"/>
+            <Button x:Name="captureButton" Content="Capture..." HorizontalAlignment="Left" Margin="226,145,0,0" VerticalAlignment="Top" Click="captureButton_Click" Width="224"/>
+            <Button x:Name="chooseButton" Content="Choose..." HorizontalAlignment="Left" Margin="226,86,0,0" VerticalAlignment="Top" Width="223" Click="chooseButtonClick"/>
             <Button x:Name="uploadButton" Content="Upload" HorizontalAlignment="Left" Margin="2,534,0,0" VerticalAlignment="Top" Height="73" Width="443" Click="uploadButton_Click"/>
-
-
+            <TextBox x:Name="descriptionBox" HorizontalAlignment="Left" Height="114" Margin="2,432,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="440"/>
+            <TextBlock HorizontalAlignment="Left" Margin="14,410,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            	<Run Text="Description"/>
+            	<Run Text=" (Tell others what's in it!"/>
+            	<Run Text=")"/>
+            	<Run Text=":"/>
+            </TextBlock>
+            <TextBox x:Name="categoryBox" HorizontalAlignment="Left" Height="72" Margin="2,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="442"/>
+            <TextBlock Text="Recipe Category: " HorizontalAlignment="Left" Margin="16,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="410"/>
         </Grid>
     </Grid>
 

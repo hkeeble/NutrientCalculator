@@ -119,6 +119,7 @@
     <Compile Include="Source\FatSecret\RecipeSearch.cs" />
     <Compile Include="Source\FatSecret\SearchResult.cs" />
     <Compile Include="Source\FatSecret\JsonConverters.cs" />
+    <Compile Include="Source\ImageConverter.cs" />
     <Compile Include="Source\Ingredient.cs" />
     <Compile Include="Source\LoadingBarUtil.cs" />
     <Compile Include="Source\NavigationData.cs" />
@@ -150,11 +151,17 @@
     <Compile Include="Source\Pages\RecipeSearch.xaml.cs">
       <DependentUpon>RecipeSearch.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Source\Pages\SearchUserRecipes.xaml.cs">
+      <DependentUpon>SearchUserRecipes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Source\Pages\ServingViewer.xaml.cs">
       <DependentUpon>ServingViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\Pages\UploadRecipe.xaml.cs">
       <DependentUpon>UploadRecipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Pages\UserRecipeBrowser.xaml.cs">
+      <DependentUpon>UserRecipeBrowser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\Pages\WeeklySummary.xaml.cs">
       <DependentUpon>WeeklySummary.xaml</DependentUpon>
@@ -209,11 +216,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Source\Pages\SearchUserRecipes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Source\Pages\ServingViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Source\Pages\UploadRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\Pages\UserRecipeBrowser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -251,13 +266,14 @@
     </None>
     <Content Include="Images\addAMealToTodayTile.png" />
     <Content Include="Images\browseMyRecipesTile.png" />
+    <Content Include="Images\browseUserRecipes.png" />
     <Content Include="Images\buildRecipeTile.png" />
     <Content Include="Images\defaultProfile.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\defaultRecipe.png" />
     <Content Include="Images\searchFatSecretRecipesTile.png" />
-    <Content Include="Images\searchNutrientCalculatorRecipesTile.png" />
+    <Content Include="Images\searchUserRecipesTile.png" />
     <Content Include="Images\weeklySummaryTile.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>

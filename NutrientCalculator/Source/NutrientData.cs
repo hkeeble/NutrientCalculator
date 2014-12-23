@@ -71,6 +71,7 @@ namespace Assignment
             if(useMax)
             {
                 newData.calories = specification.Calories.Maximum;
+                newData.carbohydrate = specification.Carbohydrate.Maximum;
                 newData.protein = specification.Protein.Maximum;
                 newData.sugars = specification.Sugars.Maximum;
                 newData.fat = specification.Fat.Maximum;
@@ -81,6 +82,7 @@ namespace Assignment
             else
             {
                 newData.calories = specification.Calories.Minimum;
+                newData.carbohydrate = specification.Carbohydrate.Minimum;
                 newData.protein = specification.Protein.Minimum;
                 newData.sugars = specification.Sugars.Minimum;
                 newData.fat = specification.Fat.Minimum;
@@ -98,6 +100,7 @@ namespace Assignment
 
             total.calories = a.calories + b.calories;
             total.protein = a.protein + b.protein;
+            total.carbohydrate = a.carbohydrate + b.carbohydrate;
             total.sugars = a.sugars + b.sugars;
             total.fat = a.fat + b.fat;
             total.saturates = a.saturates + b.saturates;
@@ -112,6 +115,7 @@ namespace Assignment
             NutrientData total = new NutrientData();
 
             total.calories = a.calories - b.calories;
+            total.carbohydrate = a.carbohydrate - b.carbohydrate;
             total.protein = a.protein - b.protein;
             total.sugars = a.sugars - b.sugars;
             total.fat = a.fat - b.fat;
@@ -130,6 +134,7 @@ namespace Assignment
             NutrientData newData = new NutrientData();
 
             newData.calories = Math.Abs(calories);
+            newData.carbohydrate = Math.Abs(carbohydrate);
             newData.protein = Math.Abs(protein);
             newData.sugars = Math.Abs(sugars);
             newData.fat = Math.Abs(fat);

@@ -52,6 +52,9 @@
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\browseMyRecipesTile.png">
       <PackagePath>Images\browseMyRecipesTile.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\browseUserRecipes.png">
+      <PackagePath>Images\browseUserRecipes.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\buildRecipeTile.png">
       <PackagePath>Images\buildRecipeTile.png</PackagePath>
     </AppxPackagedFile>
@@ -64,8 +67,8 @@
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\searchFatSecretRecipesTile.png">
       <PackagePath>Images\searchFatSecretRecipesTile.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\searchNutrientCalculatorRecipesTile.png">
-      <PackagePath>Images\searchNutrientCalculatorRecipesTile.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\searchUserRecipesTile.png">
+      <PackagePath>Images\searchUserRecipesTile.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Henri\Documents\Projects\SocialApps\NutrientCalculator\NutrientCalculator\NutrientCalculator\Images\weeklySummaryTile.png">
       <PackagePath>Images\weeklySummaryTile.png</PackagePath>
